@@ -52,9 +52,12 @@ public class Cart {
 		for (int i = 0; i < qtyOrdered; i++) {
 			if(itemsOrdered[i].equals(disc)) {
 				founded = true;
-				itemsOrdered = null;
-				for (int j = i; j < qtyOrdered - 1; j++) {
-					itemsOrdered[j] = itemsOrdered[j+1];
+				if (i == qtyOrdered - 1) {
+					itemsOrdered[i] = null;
+				}else {
+					for (int j = i; j < qtyOrdered - 1; j++) {
+						itemsOrdered[j] = itemsOrdered[j + 1];
+					}
 				}
 			}
 		}
@@ -68,7 +71,7 @@ public class Cart {
 	public float totalCost() {
 		float cost = 0;
 		for (int i = 0; i < qtyOrdered; i++) {
-			cost += getItemsOrdered()[i].getCost();
+			cost += itemsOrdered[i].getCost();
 		}
 		return cost;
 	}
